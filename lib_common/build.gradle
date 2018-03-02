@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+//        multiDexEnabled true
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    //Android Support
+    api "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.android.support:percent:$rootProject.supportLibraryVersion"
+
+    // kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlin_version"
+    api "org.jetbrains.anko:anko-commons:+"
+
+    // 状态栏
+    api "com.githang:status-bar-compat:$rootProject.statusVersion"
+    api "com.readystatesoftware.systembartint:systembartint:$rootProject.systembartintVersion"
+    // 滑动后退
+    api "com.github.anzewei:parallaxbacklayout:$rootProject.moveVersion"
+    // 图片选择
+    api "com.library.tangxiaolv:telegramgallery:$rootProject.photoChooseVersion"
+    // 权限处理
+    api "me.weyye.hipermission:library:$rootProject.permissionVersion"
+
+    //网络请求相关
+//    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+//    api "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofitVersion"
+//    api "com.github.franmontiel:PersistentCookieJar:$rootProject.cookieVersion"
+
+    //屏幕适配
+    api "com.zhy:autolayout:$rootProject.autolayoutVersion"
+    // 下拉刷新
+    api "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartRefreshLayoutVersion"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartRefreshLayoutVersion"//如果使用了特殊的Header
+    // 滚轮选择
+    api "com.contrarywind:Android-PickerView:$rootProject.pickerViewVersion"
+
+    api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
+    //router
+    api "com.alibaba:arouter-api:$rootProject.routerVersion"
+
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    api "com.orhanobut:logger:$rootProject.loggerVersion"
+
+    api "com.github.chrisbanes:PhotoView:$rootProject.photoViewVersion"
+
+    api "com.jude:easyrecyclerview:$rootProject.easyRecyclerVersion"
+    api "com.github.GrenderG:Toasty:$rootProject.toastyVersion"
+
+    api "com.android.support:multidex:$rootProject.muliteDexVersion"
+
+}
