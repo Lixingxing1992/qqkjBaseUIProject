@@ -1,7 +1,3 @@
-include ':app', ':lib_res',
-        ':lib_common',
-        ':module_main',
-        ':module_coupon',
-        ':module_event',
-        ':test'
+include ':app',
+        ':lib_common'
 

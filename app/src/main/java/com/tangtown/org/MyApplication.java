@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.app.org.util.FileManager;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -59,7 +58,7 @@ public class MyApplication extends BaseApplication {
         ACRA.getErrorReporter().setReportSender(new CrashReportSender());
 
 
-        FileManager.initFileDir(BaseUtils.getContext());
+//        FileManager.initFileDir(BaseUtils.getContext());
     }
 
 
