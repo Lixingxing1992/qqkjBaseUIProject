@@ -3,6 +3,14 @@ apply plugin: 'com.android.application'
 static def buildTime() {
     return new Date().format("yyyyMMdd")
 }
+rootProject.ext {
+    // Sdk and tools
+    compileSdkVersion = 25
+    minSdkVersion = 19
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = "1.0"
+}
 
 android {
     signingConfigs {
