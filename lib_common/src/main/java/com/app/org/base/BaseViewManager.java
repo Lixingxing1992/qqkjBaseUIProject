@@ -15,20 +15,20 @@ import java.util.Stack;
  * @version V1.1
  * @name ViewManager
  */
-public class ViewManager {
+public class BaseViewManager {
 
     private static Stack<Activity> activityStack;
     private static List<BaseFragment> fragmentList;
 
-    public static ViewManager getInstance() {
+    public static BaseViewManager getInstance() {
         return ViewManagerHolder.sInstance;
     }
 
     private static class ViewManagerHolder {
-        private static final ViewManager sInstance = new ViewManager();
+        private static final BaseViewManager sInstance = new BaseViewManager();
     }
 
-    private ViewManager() {
+    private BaseViewManager() {
     }
 
     public void addFragment(int index, BaseFragment fragment) {

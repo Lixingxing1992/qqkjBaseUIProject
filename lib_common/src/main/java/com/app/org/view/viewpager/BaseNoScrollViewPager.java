@@ -1,4 +1,4 @@
-package com.app.org.view;
+package com.app.org.view.viewpager;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -12,15 +12,15 @@ import android.view.MotionEvent;
  * @version V1.1
  * @name NoScrollViewPager
  */
-public class NoScrollViewPager extends ViewPager {
+public class BaseNoScrollViewPager extends ViewPager {
 
     private boolean isPagingEnabled = true;
 
-    public NoScrollViewPager(Context context) {
+    public BaseNoScrollViewPager(Context context) {
         super(context);
     }
 
-    public NoScrollViewPager(Context context, AttributeSet attrs) {
+    public BaseNoScrollViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -24,9 +24,9 @@ import java.util.concurrent.Future;
 /**
  * 网络相关工具类
  */
-public class NetworkUtils {
+public class BaseNetworkUtil {
 
-    private NetworkUtils() {
+    private BaseNetworkUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
@@ -79,7 +79,7 @@ public class NetworkUtils {
      * @return {@code true}: 可用<br>{@code false}: 不可用
      */
     public static boolean isAvailableByPing() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("ping -c 1 -w 1 223.5.5.5", false);
+        BaseShellUtil.CommandResult result = BaseShellUtil.execCmd("ping -c 1 -w 1 223.5.5.5", false);
         boolean ret = result.result == 0;
         if (result.errorMsg != null) {
             Logger.d("isAvailableByPing errorMsg", result.errorMsg);
@@ -212,12 +212,12 @@ public class NetworkUtils {
      *
      * @return 网络类型
      * <ul>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_WIFI   } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_4G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_3G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_2G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_UNKNOWN} </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_NO     } </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_WIFI   } </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_4G     } </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_3G     } </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_2G     } </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_UNKNOWN} </li>
+     * <li>{@link BaseNetworkUtil.NetworkType#NETWORK_NO     } </li>
      * </ul>
      */
     public static NetworkType getNetworkType() {

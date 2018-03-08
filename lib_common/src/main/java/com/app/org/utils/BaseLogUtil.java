@@ -11,7 +11,7 @@ import com.app.org.BuildConfig;
  * Created by lixingxing on 2017/12/28.
  */
 
-public class LogUtil {
+public class BaseLogUtil {
     public static final int DEBUG = 3;
     public static final int ERROR = 6;
     public static final int ASSERT = 7;
@@ -22,7 +22,7 @@ public class LogUtil {
     private static final String DEFAULT_TAG = "PRETTYLOGGER";
 
     //no instance
-    private LogUtil() {
+    private BaseLogUtil() {
     }
 
     /**

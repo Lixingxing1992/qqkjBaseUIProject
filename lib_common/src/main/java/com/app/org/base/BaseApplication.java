@@ -7,8 +7,8 @@ import com.app.org.ApplicationDelegate;
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import com.orhanobut.logger.LogLevel;
 
-import com.app.org.utils.ClassUtils;
-import com.app.org.utils.LogUtil;
+import com.app.org.utils.BaseClassUtil;
+import com.app.org.utils.BaseLogUtil;
 import com.app.org.utils.BaseUtils;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class BaseApplication extends Application {
 
-    public static final String ROOT_PACKAGE = "com.tangtown.org";
+    public String ROOT_PACKAGE = "com.tangtown.org";
 
     private static BaseApplication sInstance;
 
@@ -41,12 +41,12 @@ public class BaseApplication extends Application {
         super.onCreate();
         sInstance = this;
 
-        LogUtil.init("pattern").logLevel(LogLevel.FULL);
+        BaseLogUtil.init("pattern").logLevel(LogLevel.FULL);
         BaseUtils.init(this);
 
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 
-        mAppDelegateList = ClassUtils.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
+        mAppDelegateList = BaseClassUtil.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
         for (ApplicationDelegate delegate : mAppDelegateList) {
             delegate.onCreate();
         }

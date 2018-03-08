@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.StatFs;
 
-import com.app.org.utils.StringUtils;
-import com.app.org.utils.ToastUtils;
+import com.app.org.utils.BaseStringUtil;
+import com.app.org.utils.BaseToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -32,7 +32,7 @@ import java.util.Comparator;
  * Created by lixingxing on 2018/1/22.
  */
 
-public class FileInit {
+public class BaseFileInit {
 
     //    public static final String DIR_ROOT = "tangdao";
     //默认放置临时文件目录
@@ -94,7 +94,7 @@ public class FileInit {
 
         try {
             if(!isCanUseSD()){
-                ToastUtils.showShortToast("");
+                BaseToastUtil.showShortToast("");
                 return;
             }else{
 
@@ -478,7 +478,7 @@ public class FileInit {
                     copyAssets2SD(context, fileName, outDir + "/"+fileName);
                 } else {
                     InputStream in = null;
-                    if(!StringUtils.isEmpty(assetDir)){
+                    if(!BaseStringUtil.isEmpty(assetDir)){
                         in = context.getAssets().open(assetDir + "/" + fileName);
                     }else{
                         in = context.getAssets().open(fileName);

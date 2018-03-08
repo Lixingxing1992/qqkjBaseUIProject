@@ -1,4 +1,4 @@
-package com.app.org.view;
+package com.app.org.view.viewpager;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -11,13 +11,13 @@ import android.view.MotionEvent;
  * @author lixin 2017/9/27 10:10
  * @version V1.1
  */
-public class HackyViewPager extends ViewPager {
+public class BaseHackyViewPager extends ViewPager {
 
-    public HackyViewPager(Context context) {
+    public BaseHackyViewPager(Context context) {
         super(context);
     }
 
-    public HackyViewPager(Context context, AttributeSet attrs) {
+    public BaseHackyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -82,7 +82,7 @@ public class BaseUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isAppDebug() {
-        if (StringUtils.isSpace(context.getPackageName())) {
+        if (BaseStringUtil.isSpace(context.getPackageName())) {
             return false;
         }
         try {

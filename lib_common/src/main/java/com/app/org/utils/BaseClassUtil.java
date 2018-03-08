@@ -23,7 +23,7 @@ import dalvik.system.DexFile;
  * Copy from galaxy sdk ${com.alibaba.android.galaxy.utils.ClassUtils}
  * Scanner, find out class with any conditions, copy from google source code.
  */
-public class ClassUtils {
+public class BaseClassUtil {
     private static final String TAG = "ClassUtils";
 
     private static final String EXTRACTED_NAME_EXT = ".classes";

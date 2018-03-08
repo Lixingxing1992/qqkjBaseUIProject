@@ -10,9 +10,9 @@ import android.widget.Toast;
 /**
  * Toast相关工具类
  */
-public class ToastUtils {
+public class BaseToastUtil {
 
-    private ToastUtils() {
+    private BaseToastUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
@@ -28,7 +28,7 @@ public class ToastUtils {
      *                       <p>如果为{@code false}的话可用来做显示任意时长的吐司</p>
      */
     public static void init(boolean isJumpWhenMore) {
-        ToastUtils.isJumpWhenMore = isJumpWhenMore;
+        BaseToastUtil.isJumpWhenMore = isJumpWhenMore;
     }
 
     /**

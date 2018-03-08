@@ -1,5 +1,7 @@
 package com.app.org.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
@@ -9,14 +11,17 @@ import android.view.View;
 
 import com.app.org.R;
 import com.app.org.utils.BaseUtils;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
  * <p>Activity基类 </p>
  *
  * @name BaseActivity
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AutoLayoutActivity {
 
+    protected Context baseContext;
+    protected BaseActivity activity;
 
     /**
      * 封装的findViewByID方法
@@ -30,14 +35,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewManager.getInstance().addActivity(this);
+        baseContext = this;
+        activity = this;
+        BaseViewManager.getInstance().addActivity(this);
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ViewManager.getInstance().finishActivity(this);
+        baseContext = null;
+        activity = null;
+        BaseViewManager.getInstance().finishActivity(this);
     }
 
     @Override

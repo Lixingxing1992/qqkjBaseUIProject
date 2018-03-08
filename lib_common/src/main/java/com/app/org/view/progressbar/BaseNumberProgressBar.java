@@ -13,13 +13,13 @@ import android.view.View;
 
 import com.app.org.R;
 
-import static com.app.org.view.progressbar.NumberProgressBar.ProgressTextVisibility.Invisible;
-import static com.app.org.view.progressbar.NumberProgressBar.ProgressTextVisibility.Visible;
+import static com.app.org.view.progressbar.BaseNumberProgressBar.ProgressTextVisibility.Invisible;
+import static com.app.org.view.progressbar.BaseNumberProgressBar.ProgressTextVisibility.Visible;
 
 /**
  * Created by lixingxing on 2018/1/30.
  */
-public class NumberProgressBar extends View {
+public class BaseNumberProgressBar extends View {
 
     private int mMaxProgress = 100;
 
@@ -161,15 +161,15 @@ public class NumberProgressBar extends View {
         Visible, Invisible
     }
 
-    public NumberProgressBar(Context context) {
+    public BaseNumberProgressBar(Context context) {
         this(context, null);
     }
 
-    public NumberProgressBar(Context context, AttributeSet attrs) {
+    public BaseNumberProgressBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public NumberProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseNumberProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         default_reached_bar_height = dp2px(1.5f);

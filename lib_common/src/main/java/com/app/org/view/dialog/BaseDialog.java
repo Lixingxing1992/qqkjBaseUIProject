@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 
 import com.app.org.R;
+import com.app.org.view.BaseToast;
 
 
 public class BaseDialog extends Dialog {
@@ -118,5 +119,11 @@ public class BaseDialog extends Dialog {
 
     public void setOnWhole() {
         getWindow().setType(LayoutParams.TYPE_SYSTEM_ALERT);
+    }
+
+
+    public void cancel(String str) {
+        cancel();
+        BaseToast.normal(str);
     }
 }

@@ -14,6 +14,7 @@ import org.acra.sender.EmailIntentSender;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
 import com.app.org.base.BaseApplication;
+import com.app.org.init.BaseFileInit;
 import com.app.org.utils.BaseUtils;
 
 /**
@@ -58,7 +59,7 @@ public class MyApplication extends BaseApplication {
         ACRA.getErrorReporter().setReportSender(new CrashReportSender());
 
 
-//        FileManager.initFileDir(BaseUtils.getContext());
+        BaseFileInit.initFileDir(BaseUtils.getContext());
     }
 
 

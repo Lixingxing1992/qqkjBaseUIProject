@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="design_width"
+            android:value="720" />
+        <meta-data
+            android:name="design_height"
+            android:value="1280" />
+
         <!-- 发送崩溃日志界面 -->
         <activity
             android:name="org.acra.CrashReportDialog"
@@ -24,6 +31,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.TextViewDialog"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".view.TextViewProgress"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

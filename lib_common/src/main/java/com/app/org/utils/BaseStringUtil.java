@@ -3,9 +3,9 @@ package com.app.org.utils;
 /**
  * 字符串相关工具类
  */
-public class StringUtils {
+public class BaseStringUtil {
 
-    private StringUtils() {
+    private BaseStringUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
