@@ -30,12 +30,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:textAllCaps="false"
                 android:onClick="onBtnClick"
                 android:id="@+id/progress"
                 android:text="测试progress"
                 android:layout_width="600px"
                 android:layout_height="100px" />
             <Button
+                android:textAllCaps="false"
                 android:onClick="onBtnClick"
                 android:id="@+id/dialog"
                 android:text="测试dialog"

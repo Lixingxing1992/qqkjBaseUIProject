@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:textAllCaps="false"
                 android:onClick="onBtnClick"
                 android:id="@+id/BaseLoadingDialog"
                 android:text="BaseLoadingDialog"
