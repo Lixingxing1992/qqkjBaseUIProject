@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class BaseApplication extends Application {
 
-    public String ROOT_PACKAGE = "com.tangtown.org";
+    public String ROOT_PACKAGE = "com.qqkjbasepro.org";
 
     private static BaseApplication sInstance;
 

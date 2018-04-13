@@ -32,6 +32,17 @@ public class BaseStringUtil {
     }
 
 
+
+    /**
+     * 判断字符串是否为null或长度为0
+     *
+     * @param s 待校验字符串
+     * @return {@code true}: 空<br> {@code false}: 不为空
+     */
+    public static boolean checkEmpty(CharSequence s) {
+        return isEmpty(s) || isSpace(s.toString()) || s.equals("null");
+    }
+
     /**
      * 判断字符串是否为null或长度为0
      *

@@ -1,4 +1,4 @@
-package com.tangtown.org
+package com.qqkjbasepro.org
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.tangtown.org", appContext.packageName)
+        assertEquals("com.qqkjbasepro.org", appContext.packageName)
     }
 }

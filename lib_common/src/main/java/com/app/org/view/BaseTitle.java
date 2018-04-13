@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,17 +14,16 @@ import android.widget.TextView;
 
 import com.app.org.R;
 import com.app.org.utils.BaseDataUtil;
-import com.app.org.utils.BaseImageUtil;
 import com.app.org.utils.BaseKeyboardUtil;
 import com.app.org.utils.BasePrexUtil;
-import com.app.org.utils.BaseStringUtil;
 import com.app.org.view.textview.BaseTextAutoZoom;
+import com.zhy.autolayout.AutoFrameLayout;
 
 /**
  * @author by vondear on 2017/1/2.
  */
 
-public class BaseTitle extends FrameLayout {
+public class BaseTitle extends AutoFrameLayout {
     //*******************************************控件start******************************************
     private RelativeLayout mRootLayout;//根布局
 
@@ -107,7 +105,7 @@ public class BaseTitle extends FrameLayout {
             //获得属性值
             //getColor(R.styleable.BaseTitle_RxBackground, getResources().getColor(R.color.transparent))
             mTitle = a.getString(R.styleable.BaseTitle_title);//标题
-            mTitleColor = a.getColor(R.styleable.BaseTitle_titleColor, getResources().getColor(R.color.white));//标题颜色
+            mTitleColor = a.getColor(R.styleable.BaseTitle_titleColor, getResources().getColor(R.color.black));//标题颜色
             mTitleSize = a.getDimensionPixelSize(R.styleable.BaseTitle_titleSize, BasePrexUtil.dip2px(20));//标题字体大小
             //TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())
             mTitleVisibility = a.getBoolean(R.styleable.BaseTitle_titleVisibility, true);
@@ -118,12 +116,12 @@ public class BaseTitle extends FrameLayout {
             mRightIconVisibility = a.getBoolean(R.styleable.BaseTitle_rightIconVisibility, false);//右边图标是否显示
 
             mLeftText = a.getString(R.styleable.BaseTitle_leftText);
-            mLeftTextColor = a.getColor(R.styleable.BaseTitle_leftTextColor, getResources().getColor(R.color.white));//左边字体颜色
+            mLeftTextColor = a.getColor(R.styleable.BaseTitle_leftTextColor, getResources().getColor(R.color.black));//左边字体颜色
             mLeftTextSize = a.getDimensionPixelSize(R.styleable.BaseTitle_leftTextSize, BasePrexUtil.dip2px(8));//标题字体大小
             mLeftTextVisibility = a.getBoolean(R.styleable.BaseTitle_leftTextVisibility, false);
 
             mRightText = a.getString(R.styleable.BaseTitle_rightText);
-            mRightTextColor = a.getColor(R.styleable.BaseTitle_rightTextColor, getResources().getColor(R.color.white));//右边字体颜色
+            mRightTextColor = a.getColor(R.styleable.BaseTitle_rightTextColor, getResources().getColor(R.color.black));//右边字体颜色
             mRightTextSize = a.getDimensionPixelSize(R.styleable.BaseTitle_rightTextSize, BasePrexUtil.dip2px(8));//标题字体大小
             mRightTextVisibility = a.getBoolean(R.styleable.BaseTitle_rightTextVisibility, false);
 

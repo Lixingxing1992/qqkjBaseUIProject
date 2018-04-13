@@ -1,4 +1,4 @@
-package com.tangtown.org
+package com.qqkjbasepro.org
 
 import org.junit.Test
 

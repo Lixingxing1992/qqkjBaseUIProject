@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.app.org.R;
 import com.app.org.utils.BaseUtils;
+import com.app.org.view.BaseTitle;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
@@ -72,6 +73,23 @@ public abstract class BaseActivity extends AutoLayoutActivity {
             if (hideTitle) {
                 //隐藏Title
                 actionBar.setDisplayShowTitleEnabled(false);
+            }
+        }
+    }
+
+    /**
+     * Setup the BaseTitle.
+     *
+     * @param baseTitle
+     * @param hideTitle 是否隐藏Title
+     */
+    protected void setupTitleLayout(BaseTitle baseTitle,boolean hideTitle){
+        if (baseTitle != null) {
+            if (hideTitle) {
+                //隐藏Title
+                baseTitle.setVisibility(View.GONE);
+            }else{
+                baseTitle.setVisibility(View.VISIBLE);
             }
         }
     }
