@@ -4,6 +4,7 @@ import android.app.Application;
 //import android.support.multidex.MultiDexApplication;
 
 import com.app.org.ApplicationDelegate;
+import com.app.org.BuildConfig;
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import com.orhanobut.logger.LogLevel;
 
@@ -41,7 +42,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         sInstance = this;
 
-        BaseLogUtil.init("pattern").logLevel(LogLevel.FULL);
+        BaseLogUtil.init(getApplicationContext(), BuildConfig.DEBUG,false);
         BaseUtils.init(this);
 
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());

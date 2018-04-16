@@ -39,6 +39,10 @@
             android:name=".view.TextViewProgress"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".util.TestHttp"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

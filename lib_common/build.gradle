@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 group='com.github.Lixingxing1992'
 
 rootProject.ext {
@@ -127,5 +129,4 @@ dependencies {
     api "com.jude:easyrecyclerview:$rootProject.easyRecyclerVersion"
     api "com.github.GrenderG:Toasty:$rootProject.toastyVersion"
     api "com.android.support:multidex:$rootProject.muliteDexVersion"
-    implementation files('libs/BASE64Decoder.jar')
 }

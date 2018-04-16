@@ -16,12 +16,12 @@ rootProject.ext {
 
 android {
     signingConfigs {
-        release {
-            storeFile file('c_tangtown.jks')
-            storePassword '123456'
-            keyAlias '123456'
-            keyPassword '123456'
-        }
+//        release {
+//            storeFile file('c_tangtown.jks')
+//            storePassword '123456'
+//            keyAlias '123456'
+//            keyPassword '123456'
+//        }
     }
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -65,11 +65,11 @@ android {
 //    }
 
     buildTypes {
-        release {
+//        release {
             //更改AndroidManifest.xml中预先定义好占位符信息
             //manifestPlaceholders = [app_icon: "@drawable/icon"]
             // 不显示Log
-            buildConfigField "boolean", "SYSTEM", "false"
+//            buildConfigField "boolean", "SYSTEM", "false"
 //            //是否zip对齐
 //            zipAlignEnabled false
 //            // 缩减resource文件
@@ -78,20 +78,20 @@ android {
 //            minifyEnabled false
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //签名
-            signingConfig signingConfigs.release
-        }
+//            signingConfig signingConfigs.release
+//        }
 
-        debug {
+//        debug {
             //给applicationId添加后缀“.debug”
 //            applicationIdSuffix ".debug"
             //manifestPlaceholders = [app_icon: "@drawable/launch_beta"]
-            buildConfigField "boolean", "SYSTEM", "true"
+//            buildConfigField "boolean", "SYSTEM", "true"
 //            zipAlignEnabled false
 //            shrinkResources false
 //            minifyEnabled false
-            signingConfig signingConfigs.release
-            debuggable true
-        }
+//            signingConfig signingConfigs.release
+//            debuggable true
+//        }
     }
 }
 

@@ -52,12 +52,14 @@ public class BaseDialogLoading extends BaseDialog {
         setContentView(mDialogContentView);
     }
 
-    public void setLoadingText(CharSequence charSequence) {
+    public BaseDialogLoading setLoadingText(CharSequence charSequence) {
         mTextView.setText(charSequence);
+        return this;
     }
 
-    public void setLoadingColor(int color){
+    public BaseDialogLoading setLoadingColor(int color){
         mLoadingView.setColor(color);
+        return this;
     }
 
     public void cancel(BaseCancelType code, String str) {
