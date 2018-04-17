@@ -43,6 +43,22 @@ class TestHttp : BaseActivity(){
                         })
                         .goHttp()
             }
+            R.id.btn_post->{
+                val baseDialogLoading = BaseDialogLoading(baseContext)
+                        .setLoadingText("正在 post 请求中...")
+                baseDialogLoading.show()
+
+                HttpUtil(false).initUrl(AppConfig.BaseUrl + "api/activity/getActivityLists")
+                        .initParams("cardCode",10001,"page", 1, "size", 50)
+                        .initHttpCallBack(object : HttpHandlerCallBack(){
+                            override fun handleMessage(msg: Message): Boolean {
+                                BaseToastUtil.showShortToastSafe(msg.obj.toString())
+                                baseDialogLoading.cancel()
+                                return super.handleMessage(msg)
+                            }
+                        })
+                        .goHttp()
+            }
             else -> {
             }
         }

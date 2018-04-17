@@ -24,6 +24,7 @@ public abstract class BaseHttpInterface{
         return this;
     }
 
+
     // 设置返回值的类型
     public BaseHttpInterface initClass(Class tClass){
         baseHttpModel.cls = tClass;
@@ -35,7 +36,6 @@ public abstract class BaseHttpInterface{
         baseHttpModel.resultCode = resultCode;
         return this;
     }
-
 
     // 设置请求的一些配置参数
     public BaseHttpInterface initBaseHttpUtil(BaseHttpUtil baseHttpUtil){

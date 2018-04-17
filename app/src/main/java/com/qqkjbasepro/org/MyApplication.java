@@ -58,7 +58,6 @@ public class MyApplication extends BaseApplication {
         ACRA.getErrorReporter().removeAllReportSenders();
         ACRA.getErrorReporter().setReportSender(new CrashReportSender());
 
-
         BaseFileInit.initFileDir(BaseUtils.getContext());
     }
 

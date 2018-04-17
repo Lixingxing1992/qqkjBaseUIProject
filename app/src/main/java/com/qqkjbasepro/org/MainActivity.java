@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.app.org.base.BaseActivity;
+import com.qqkjbasepro.org.util.TestClass;
 import com.qqkjbasepro.org.util.TestHttp;
 import com.qqkjbasepro.org.view.TextViewDialog;
 import com.qqkjbasepro.org.view.TextViewProgress;
@@ -20,6 +21,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        TestClass testClass = new TestClass();
     }
 
     public void onBtnClick(View view) {

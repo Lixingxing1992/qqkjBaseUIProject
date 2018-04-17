@@ -33,10 +33,11 @@ class BaseHttpUtil {
      * JSON
      */
     @Synchronized
-    fun postJson(jsonParam: JSONObject?, urlPath: String): InputStream? {
+    fun postJson(jsonParams: JSONObject?, urlPath: String): BaseHttpResultModel? {
+        var baseHttpResultModel = BaseHttpResultModel()
+
         var url: URL?
         var conn: HttpURLConnection?
-        var inputStream: InputStream? = null
         try {
             url = URL(urlPath)
             //打开连接
@@ -60,37 +61,23 @@ class BaseHttpUtil {
             conn.setRequestProperty("Charset", "UTF-8")
 
             val dos = DataOutputStream(conn.outputStream)
-            //将请求参数数据向服务器端发送\
-            var jsonParams = JSONObject()
-            jsonParams.put("userCode", "qqkj")
-            jsonParams.put("passwd", "123456")
-            if (jsonParam != null) {
-                var params = BaseEncodeUtil.ooEncode(jsonParam.toString())
-                jsonParams.put("data", params)
-            }
-            dos.write(jsonParams.toString().toByteArray())
+            dos.write(jsonParams?.toString()?.toByteArray())
             dos.flush()
             dos.close()
-            if (conn.responseCode == 200) {
+
+            var code = conn.responseCode
+            baseHttpResultModel.responseCode = code
+
+            if (code == 200) {
                 //获得服务器端输出流
-                inputStream = conn.inputStream
-            } else {
-                BaseLogUtil.e("baseInterface error", "errorUrl = " + urlPath + " __errorCode = " + conn.responseCode)
+                baseHttpResultModel.inputStream = conn.inputStream
             }
-        } catch (e: MalformedURLException) {
-            // 连接路径不对
-            e.printStackTrace()
-        } catch (e: ProtocolException) {
-            // 协议错误
-            e.printStackTrace()
-        } catch (e: IOException) {
-            // 连接异常
-            e.printStackTrace()
         } catch (e: Exception) {
+            baseHttpResultModel.exception = e
             e.printStackTrace()
         }
 
-        return inputStream
+        return baseHttpResultModel
     }
 
     fun setSuccessMsg(successMsg: String): BaseHttpUtil {
