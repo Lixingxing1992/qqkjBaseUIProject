@@ -1,5 +1,6 @@
 package com.qqkjbasepro.org.util
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.view.View
@@ -18,6 +19,18 @@ import kotlinx.android.synthetic.main.text_http.*
  */
 @ParallaxBack(edge = ParallaxBack.Edge.LEFT, layout = ParallaxBack.Layout.PARALLAX)
 class TestHttp : BaseActivity(){
+    override fun setRootView() {
+    }
+
+    override fun initView() {
+    }
+
+    override fun getData() {
+    }
+
+    override fun initDefaultData(intent: Intent?) {
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.text_http)

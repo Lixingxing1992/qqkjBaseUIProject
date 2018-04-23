@@ -43,6 +43,23 @@
             android:name=".util.TestHttp"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".activitytest.OneActivity">
+        </activity>
+        <activity
+            android:name=".activitytest.TwoActivity"
+            android:launchMode="singleTask"
+            >
+        </activity>
+        <activity
+            android:name=".activitytest.ThreeActivity"
+            android:launchMode="singleInstance"
+            >
+        </activity>
+        <activity
+            android:name=".activitytest.FourActivity">
+        </activity>
     </application>
 
 </manifest>

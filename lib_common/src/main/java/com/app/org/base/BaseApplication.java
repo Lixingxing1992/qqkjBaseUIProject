@@ -43,7 +43,6 @@ public class BaseApplication extends Application {
         sInstance = this;
 
         BaseUtils.init(this);
-        BaseLogUtil.init(getApplicationContext(), BuildConfig.DEBUG,false);
 
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 

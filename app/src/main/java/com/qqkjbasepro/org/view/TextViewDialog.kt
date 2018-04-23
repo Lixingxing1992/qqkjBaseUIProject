@@ -1,5 +1,6 @@
 package com.qqkjbasepro.org.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
@@ -14,7 +15,17 @@ import kotlinx.android.synthetic.main.text_dialog.*
  */
 @ParallaxBack(edge = ParallaxBack.Edge.LEFT, layout = ParallaxBack.Layout.PARALLAX)
 class TextViewDialog : BaseActivity() {
+    override fun setRootView() {
+    }
 
+    override fun initView() {
+    }
+
+    override fun getData() {
+    }
+
+    override fun initDefaultData(intent: Intent?) {
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.text_dialog)

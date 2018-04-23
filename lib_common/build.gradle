@@ -99,6 +99,9 @@ dependencies {
     // 权限处理
     api "me.weyye.hipermission:library:$rootProject.permissionVersion"
 
+    //网络/本地图片加载
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
     //网络请求相关
 
     //    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
@@ -118,7 +121,9 @@ dependencies {
 
     // 滚轮选择
     api "com.contrarywind:Android-PickerView:$rootProject.pickerViewVersion"
+    // eventbus
     api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+    // gson 解析json
     api "com.google.code.gson:gson:$rootProject.gsonVersion"
 
     //router

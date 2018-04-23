@@ -13,8 +13,11 @@ import org.acra.collector.CrashReportData;
 import org.acra.sender.EmailIntentSender;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
+
+import com.app.org.BuildConfig;
 import com.app.org.base.BaseApplication;
 import com.app.org.init.BaseFileInit;
+import com.app.org.utils.BaseLogUtil;
 import com.app.org.utils.BaseUtils;
 
 /**
@@ -58,6 +61,9 @@ public class MyApplication extends BaseApplication {
         ACRA.getErrorReporter().removeAllReportSenders();
         ACRA.getErrorReporter().setReportSender(new CrashReportSender());
 
+        //设置log开关
+        BaseLogUtil.init(getApplicationContext(), BuildConfig.DEBUG,false);
+        //设置文件夹
         BaseFileInit.initFileDir(BaseUtils.getContext());
     }
 

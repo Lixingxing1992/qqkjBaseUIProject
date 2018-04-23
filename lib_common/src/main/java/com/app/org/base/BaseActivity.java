@@ -1,15 +1,15 @@
 package com.app.org.base;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.app.org.R;
+import com.app.org.broadcast.BaseBroadcastUtil;
 import com.app.org.utils.BaseUtils;
 import com.app.org.view.BaseTitle;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -19,16 +19,18 @@ import com.zhy.autolayout.AutoLayoutActivity;
  *
  * @name BaseActivity
  */
-public abstract class BaseActivity extends AutoLayoutActivity {
+public abstract class BaseActivity extends AutoLayoutActivity{
 
     protected Context baseContext;
     protected BaseActivity activity;
+    protected Bundle savedInstanceState;
+    public BaseBroadcastUtil baseBroadcastUtil;
 
     /**
      * 封装的findViewByID方法
      */
     @SuppressWarnings("unchecked")
-    protected <T extends View> T $(@IdRes int id) {
+    protected <T extends View> T find(@IdRes int id) {
         return (T) super.findViewById(id);
     }
 
@@ -39,6 +41,48 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         baseContext = this;
         activity = this;
         BaseViewManager.getInstance().addActivity(this);
+        baseBroadcastUtil = new BaseBroadcastUtil(System.currentTimeMillis());
+
+        this.savedInstanceState = savedInstanceState;
+
+        if(null!=savedInstanceState){
+            hasBundle(savedInstanceState);
+        }else{
+            initActivity();
+        }
+
+    }
+
+    /**
+     * 如果有 savedInstanceState 执行的方法 。  一般Activity被回收之后 在onSaveInstanceState方法中保存Bundle 信息，
+     * 然后在onCreate方法中savedInstanceState就会接收这个bundle
+     * @param savedInstanceState
+     * @return
+     */
+    protected void hasBundle(Bundle savedInstanceState){
+        initActivity();
+    }
+
+    /**
+     * 当 activity设置
+     * 1.launchmode="singleTask"，并且activity已经存在；
+     * 2."singleTop" 时，并且activity已经存在栈顶；
+     * @param intent
+     */
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);//must store the new intent unless getIntent() will return the old one
+//        initActivity();
+    }
+
+    protected void initActivity(){
+        this.onCreateBefore(savedInstanceState);
+        this.initDefaultData(getIntent()); // 获取参数
+        this.setRootView(); // 设置布局文件
+        this.initView();   // 初始化控件
+        this.getData(); // 获取数据
+        this.registerReceivers(); // 注册广播
+        this.doAction(); // 其他的操作
     }
 
 
@@ -56,6 +100,50 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         return true;
     }
 
+    /**
+     *  onCreate方法
+     */
+    public void onCreateBefore(Bundle savedInstanceState){
+
+    }
+
+    /**
+     * 设置布局文件
+     */
+    public abstract void setRootView();
+
+    /**
+     * 初始化控件
+     */
+    public abstract void initView();
+
+    /**
+     * 获取网络数据
+     */
+    public abstract void getData();
+
+    /**
+     * 获取参数
+     */
+    public abstract void initDefaultData(Intent intent);
+
+    /**
+     * 注册广播
+     */
+    public void registerReceivers(){}
+
+
+    /**
+     * 其他的操作
+     */
+    public void doAction(){}
+
+
+    @Override
+    public void finish() {
+        baseBroadcastUtil.clearReceiver();
+        super.finish();
+    }
 
     /**
      * Setup the toolbar.

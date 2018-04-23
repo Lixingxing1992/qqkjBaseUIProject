@@ -1,5 +1,6 @@
 package com.qqkjbasepro.org.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,11 +24,31 @@ public class TextViewProgress extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_progress);
-        progressBar1 = $(R.id.progress);
-        progressBar2 = $(R.id.progress2);
-        progressBar3 = $(R.id.progress3);
+        progressBar1 = find(R.id.progress);
+        progressBar2 = find(R.id.progress2);
+        progressBar3 = find(R.id.progress3);
 
         handler.sendEmptyMessage(0);
+    }
+
+    @Override
+    public void setRootView() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void getData() {
+
+    }
+
+    @Override
+    public void initDefaultData(Intent intent) {
+
     }
 
     int pro = 0;

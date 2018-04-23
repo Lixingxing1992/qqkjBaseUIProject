@@ -54,6 +54,14 @@
                 android:onClick="onBtnClick"
                 android:text="测试http"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/activity"
+                android:layout_width="600px"
+                android:layout_height="100px"
+                android:onClick="onBtnClick"
+                android:text="测试activity跳转"
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </ScrollView>
