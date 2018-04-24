@@ -1,22 +1,128 @@
 package com.app.org.base;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewStub;
 
 import com.app.org.utils.BaseUtils;
+import com.zhy.autolayout.utils.AutoUtils;
 
 
 public abstract class BaseFragment extends Fragment {
 
     protected BaseActivity mActivity;
+    protected View view = null;
+    protected Context baseContext = null;
+    protected int resId = 0;
+
+    protected BaseFragment(){
+    }
+
+    protected BaseFragment(@LayoutRes int resId){
+        this.resId = resId;
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mActivity = (BaseActivity) context;
+        baseContext = context;
+        mActivity = (BaseActivity)getActivity();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (args != null) {
+            hasBundle(args);
+        }
+    }
+    protected void hasBundle(Bundle args){
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(null == view){
+            view = inflater.inflate(resId,container,false);
+            AutoUtils.autoSize(view);
+        }
+        return view;
+    }
+
+    protected abstract void firstInitViews(View view);
+
+    protected boolean isFirstVisible = true;
+    protected boolean isFirstInvisible = true;
+    protected boolean isPrepared;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initPrepare();
+    }
+
+    private synchronized void initPrepare() {
+        if (isPrepared) {
+            firstInitViews(view);
+            onFirstUserVisible();
+        } else {
+            isPrepared = true;
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (isFirstVisible) {
+                isFirstVisible = false;
+                initPrepare();
+            } else {
+                onUserVisible();
+            }
+        } else {
+//            onUserInvisible();
+            if (isFirstInvisible) {
+                isFirstInvisible = false;
+//                onFirstUserInvisible();
+            } else {
+                onUserInvisible();
+            }
+        }
+    }
+
+    protected abstract void onFirstUserVisible();
+    protected abstract void onUserVisible();
+    //    protected void onFirstUserInvisible() { }
+    protected abstract void onUserInvisible();
+
+
+    public void reshow(){
+        if(isPrepared && getUserVisibleHint()){
+            onUserVisible();
+        }
+    }
+
+    public void hide(){
+        if(isPrepared && getUserVisibleHint()){
+            onUserInvisible();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        DetoryViewAndThing();
+        super.onDestroy();
+    }
+    protected abstract void DetoryViewAndThing();
 
     /**
      * 获取宿主Activity
