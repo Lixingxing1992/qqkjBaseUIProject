@@ -28,6 +28,7 @@ rootProject.ext {
     // 状态栏
     statusVersion = "0.7"
     systembartintVersion = "1.0.3"
+    barlibraryVersion = "2.3.0"
     // 页面滑动后退
     moveVersion = "1.1.6"
     // 图片选择
@@ -89,6 +90,7 @@ dependencies {
     // 状态栏
     api "com.githang:status-bar-compat:$rootProject.statusVersion"
     api "com.readystatesoftware.systembartint:systembartint:$rootProject.systembartintVersion"
+    compile "com.gyf.barlibrary:barlibrary:$rootProject.barlibraryVersion"
 
     // 滑动后退
     api "com.github.anzewei:parallaxbacklayout:$rootProject.moveVersion"
