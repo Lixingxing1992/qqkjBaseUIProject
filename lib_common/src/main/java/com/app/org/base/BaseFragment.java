@@ -13,6 +13,7 @@ import android.view.ViewStub;
 
 import com.app.org.utils.BaseUtils;
 import com.app.org.view.BaseTitle;
+import com.gyf.barlibrary.ImmersionBar;
 import com.zhy.autolayout.utils.AutoUtils;
 
 
@@ -22,6 +23,7 @@ public abstract class BaseFragment extends Fragment {
     protected View view = null;
     protected Context baseContext = null;
     protected int resId = 0;
+    protected ImmersionBar mImmersionBar;
 
     protected BaseFragment(){
     }
@@ -72,11 +74,19 @@ public abstract class BaseFragment extends Fragment {
 
     private synchronized void initPrepare() {
         if (isPrepared) {
+
+            mImmersionBar = ImmersionBar.with(this);
+            changeBarDark();
+
             firstInitViews(view);
             onFirstUserVisible();
         } else {
             isPrepared = true;
         }
+    }
+
+    protected void changeBarDark(){
+        mImmersionBar.statusBarDarkFont(true, 0.2f);
     }
 
     @Override
