@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 
 import com.app.org.utils.BaseUtils;
+import com.app.org.view.BaseTitle;
 import com.zhy.autolayout.utils.AutoUtils;
 
 
@@ -123,6 +124,24 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
     }
     protected abstract void DetoryViewAndThing();
+
+
+    /**
+     * Setup the BaseTitle.
+     *
+     * @param baseTitle
+     * @param hideTitle 是否隐藏Title
+     */
+    protected void setupTitleLayout(BaseTitle baseTitle, boolean hideTitle){
+        if (baseTitle != null) {
+            if (hideTitle) {
+                //隐藏Title
+                baseTitle.setVisibility(View.GONE);
+            }else{
+                baseTitle.setVisibility(View.VISIBLE);
+            }
+        }
+    }
 
     /**
      * 获取宿主Activity
