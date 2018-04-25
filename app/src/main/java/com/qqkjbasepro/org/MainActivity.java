@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.app.org.base.BaseActivity;
-import com.qqkjbasepro.org.activitytest.OneActivity;
+import com.qqkjbasepro.org.activitylanch.OneActivity;
 import com.qqkjbasepro.org.util.TestHttp;
 import com.qqkjbasepro.org.view.TextViewDialog;
 import com.qqkjbasepro.org.view.TextViewProgress;

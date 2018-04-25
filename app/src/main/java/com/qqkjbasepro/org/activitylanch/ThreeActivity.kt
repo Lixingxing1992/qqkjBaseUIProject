@@ -1,9 +1,7 @@
-package com.qqkjbasepro.org.activitytest
+package com.qqkjbasepro.org.activitylanch
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 
 import com.app.org.utils.BaseLogUtil
@@ -14,28 +12,23 @@ import kotlinx.android.synthetic.main.text_activity.*
 /**
  * Created by lixingxing on 2018/4/22.
  */
-class OneActivity : AutoLayoutActivity() {
+class ThreeActivity : AutoLayoutActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.text_activity)
-        btn_go.text = "OneActivity->2"
-        BaseLogUtil.e("activitytest", "OneActivity onCreate")
+        btn_go.text = "ThreeActivity->4"
+        BaseLogUtil.e("activitytest", "ThreeActivity onCreate")
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        BaseLogUtil.e("activitytest", "OneActivity onNewIntent")
+        BaseLogUtil.e("activitytest", "ThreeActivity onNewIntent")
     }
 
     fun onBtnClick(view: View) {
         if (view.id == R.id.btn_go) {
-            startActivity(Intent(this, TwoActivity::class.java))
+            startActivity(Intent(this, FourActivity::class.java))
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        BaseLogUtil.e("activitytest", "OneActivity onSaveInstanceState")
     }
 }

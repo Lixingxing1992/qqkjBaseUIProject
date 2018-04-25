@@ -45,21 +45,22 @@
         </activity>
 
         <activity
-            android:name=".activitytest.OneActivity">
+            android:name=".activitylanch.OneActivity">
         </activity>
         <activity
-            android:name=".activitytest.TwoActivity"
+            android:name=".activitylanch.TwoActivity"
             android:launchMode="singleTask"
             >
         </activity>
         <activity
-            android:name=".activitytest.ThreeActivity"
+            android:name=".activitylanch.ThreeActivity"
             android:launchMode="singleInstance"
             >
         </activity>
         <activity
-            android:name=".activitytest.FourActivity">
+            android:name=".activitylanch.FourActivity">
         </activity>
+
     </application>
 
 </manifest>

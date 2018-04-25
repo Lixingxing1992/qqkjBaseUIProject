@@ -130,6 +130,8 @@ dependencies {
 
     //router
     api "com.alibaba:arouter-api:$rootProject.routerVersion"
+
+
     api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     api "com.orhanobut:logger:$rootProject.loggerVersion"
     api "com.github.chrisbanes:PhotoView:$rootProject.photoViewVersion"

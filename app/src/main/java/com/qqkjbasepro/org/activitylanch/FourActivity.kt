@@ -1,6 +1,5 @@
-package com.qqkjbasepro.org.activitytest
+package com.qqkjbasepro.org.activitylanch
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View

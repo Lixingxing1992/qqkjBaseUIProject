@@ -34,6 +34,13 @@ android {
 //        multiDexEnabled true
         //打包时间
         resValue "string", "build_time", buildTime()
+
+        //ARouter
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
 
     lintOptions {

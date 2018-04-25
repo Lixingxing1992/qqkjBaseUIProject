@@ -38,4 +38,14 @@ public class BaseNoScrollViewPager extends ViewPager {
         this.isPagingEnabled = b;
     }
 
+    @Override
+    public void setCurrentItem(int item, boolean smoothScroll) {
+        super.setCurrentItem(item, smoothScroll);
+    }
+
+    @Override
+    public void setCurrentItem(int item) {
+        super.setCurrentItem(item, false);
+    }
+
 }

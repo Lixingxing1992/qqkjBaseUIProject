@@ -62,6 +62,7 @@
                 android:onClick="onBtnClick"
                 android:text="测试activity跳转"
                 android:textAllCaps="false" />
+
         </LinearLayout>
 
     </ScrollView>
