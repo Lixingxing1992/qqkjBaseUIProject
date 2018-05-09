@@ -96,4 +96,15 @@ public class BaseDialogLoading extends BaseDialog {
     }
 
     public enum BaseCancelType {normal, error, success, info}
+
+
+    public BaseDialogLoading showDialog(){
+        show();
+        return this;
+    }
+
+    public BaseDialogLoading showDialog(String text){
+        setLoadingText(text).show();
+        return this;
+    }
 }

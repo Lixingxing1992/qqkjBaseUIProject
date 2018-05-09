@@ -1,9 +1,10 @@
-package com.qqkjbasepro.org.util.http
+package com.app_res.org.util.http
 
 import android.os.Handler
 import com.app.org.encryption.BaseEncodeUtil
 import com.app.org.http.BaseHttpConfig
 import com.app.org.http.BaseHttpInterface
+import com.app.org.http.BaseHttpUtil
 import com.app.org.utils.BaseDataUtil
 import com.app.org.utils.BaseLogUtil
 import com.app.org.utils.BaseStringUtil
@@ -16,7 +17,7 @@ import org.json.JSONObject
  * 自定义网络请求实现类
  * Created by lixingxing on 2018/4/16.
  */
-class HttpUtil @JvmOverloads constructor(isShowLog: Boolean? = true)
+class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
     : BaseHttpInterface() {
 
     internal var tag = System.currentTimeMillis().toString() + ""
@@ -100,6 +101,7 @@ class HttpUtil @JvmOverloads constructor(isShowLog: Boolean? = true)
                         } else {
                             if(isShowLog)
                             BaseLogUtil.e(tag + "__baseInterface", "返回值 = " + result)
+                            httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Success
                             httpHandler?.obtainMessage(0, result)?.sendToTarget()
                         }
                     } else {

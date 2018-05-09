@@ -32,6 +32,18 @@ public abstract class BaseFragment extends Fragment {
         this.resId = resId;
     }
 
+    /**
+     * 封装的findViewByID方法
+     */
+    @SuppressWarnings("unchecked")
+    protected <T extends View> T find(@IdRes int id) {
+        if(view!=null){
+            return (T) view.findViewById(id);
+        }else{
+            return null;
+        }
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -290,4 +290,19 @@ public class BaseClassUtil {
             return false;
         }
     }
+
+
+
+    public static Object invokeClassMethod(String className,String methodName,Class[] paramsTypes,Object[] object) {
+        Class pathsByInstantRun = null;
+        Object methodReturn = null;
+        try {
+            pathsByInstantRun = Class.forName(className);
+            Method getDexFileDirectory = pathsByInstantRun.getMethod(methodName, paramsTypes);
+            methodReturn = getDexFileDirectory.invoke(null, object);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return methodReturn;
+    }
 }

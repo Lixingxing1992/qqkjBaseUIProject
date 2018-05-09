@@ -1,18 +1,13 @@
 package com.app.org.base;
 
 import android.app.Application;
-//import android.support.multidex.MultiDexApplication;
 
-import com.app.org.ApplicationDelegate;
-import com.app.org.BuildConfig;
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
-import com.orhanobut.logger.LogLevel;
-
-import com.app.org.utils.BaseClassUtil;
-import com.app.org.utils.BaseLogUtil;
 import com.app.org.utils.BaseUtils;
 
 import java.util.List;
+
+import io.paperdb.Paper;
 
 /**
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；
@@ -26,7 +21,7 @@ import java.util.List;
  */
 public class BaseApplication extends Application {
 
-    public String ROOT_PACKAGE = "com.qqkjbasepro.org";
+//    public String ROOT_PACKAGE = "com.qqkjbasepro.org";
 
     private static BaseApplication sInstance;
 
@@ -44,12 +39,14 @@ public class BaseApplication extends Application {
 
         BaseUtils.init(this);
 
+        Paper.init(this);
+
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 
-        mAppDelegateList = BaseClassUtil.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
-        for (ApplicationDelegate delegate : mAppDelegateList) {
-            delegate.onCreate();
-        }
+//        mAppDelegateList = BaseClassUtil.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
+//        for (ApplicationDelegate delegate : mAppDelegateList) {
+//            delegate.onCreate();
+//        }
 
     }
 

@@ -1,4 +1,4 @@
-package com.app.org;
+package com.app.org.base;
 
 /**
  * <p>类说明</p>

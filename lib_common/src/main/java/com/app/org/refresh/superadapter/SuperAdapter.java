@@ -21,6 +21,9 @@ import java.util.List;
  * Created by Cheney on 16/3/30.
  */
 public abstract class SuperAdapter<T> extends ListSupportAdapter<T> implements CRUD<T> {
+
+    public static int emptyViewType = -1;
+
     private LayoutInflater mLayoutInflater;
 
     /**

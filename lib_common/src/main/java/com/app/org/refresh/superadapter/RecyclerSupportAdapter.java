@@ -186,7 +186,7 @@ abstract class RecyclerSupportAdapter<T> extends RecyclerView.Adapter<SuperViewH
     public void onBindViewHolder(SuperViewHolder holder, int position) {
         int viewType = getItemViewType(position);
         if (viewType != TYPE_HEADER && viewType != TYPE_FOOTER) {
-            onBind(holder, viewType, position, position >= mData.size() ? null : mData.get(hasHeaderView() ? --position : position));
+            onBind(holder, viewType, position, (!hasHeaderView() && position >= mData.size()) ? null : mData.get(hasHeaderView() ? --position : position));
             addLoadAnimation(holder); // Load animation
         }
     }
