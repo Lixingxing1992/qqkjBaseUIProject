@@ -10,6 +10,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -304,5 +306,14 @@ public class BaseClassUtil {
             e.printStackTrace();
         }
         return methodReturn;
+    }
+
+
+    //获取泛型参数类型
+    public static Class<?> getClassParameterizedType(Object object){
+        Type genType = object.getClass().getGenericSuperclass();
+        //获取参数化类型
+        Type[] params = ((ParameterizedType)genType).getActualTypeArguments();
+        return (Class<?>)params[0];
     }
 }
