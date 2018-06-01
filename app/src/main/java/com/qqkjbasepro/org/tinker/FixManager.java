@@ -70,7 +70,6 @@ public class FixManager {
                             Array.set(newElementArray,i,Array.get(systemElements,i-myLength));
                         }
                     }
-
                     //4. 融合完毕
                     systemElementField.set(pathListObject,newElementArray);
 

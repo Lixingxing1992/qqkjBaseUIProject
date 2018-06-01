@@ -6,8 +6,8 @@ package com.app.org.http;
 public class BaseHttpModel {
     public String url;
     public Object params;
+    public BaseHttpConfig.RequestType request_type;
     public int http_code;
-    public int http_type;
     public Class cls;
     public String resultCode;
 

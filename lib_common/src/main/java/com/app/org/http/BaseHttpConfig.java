@@ -19,6 +19,7 @@ public class BaseHttpConfig {
         Error_Unknow("未知错误导致请求失败"),
         Error_ResultErrorCode("服务器请求失败"),
         Error_ResultException("服务器请求出现异常"),
+        Error_HASNONEW("网络连接异常,请先检查您的网络配置"),
         Error_Read("读取返回结果时异常"),
         Error_Result_Parsr_error("后台程序返回值不符合格式要求"),
         Error_Result_none("未获取到数据"),
@@ -26,6 +27,35 @@ public class BaseHttpConfig {
 
         private String msg = "";
         ErrorCode(String msg){
+            this.msg = msg;
+        }
+        @Override
+        public String toString() {
+            return msg;
+        }
+    }
+
+
+    public enum RequestType {
+        POST("POST"),
+        GET("GET"),
+        FILE("FILE");
+        private String msg = "";
+        RequestType(String msg){
+            this.msg = msg;
+        }
+        @Override
+        public String toString() {
+            return msg;
+        }
+    }
+    public enum ParamType {
+        POST("POST"),
+        JSON("JSON"),
+        XML("XML");
+
+        private String msg = "";
+        ParamType(String msg){
             this.msg = msg;
         }
         @Override

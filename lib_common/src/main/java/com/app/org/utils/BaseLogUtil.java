@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.apkfuns.logutils.LogUtils;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,6 +41,23 @@ public class BaseLogUtil {
         LOG_FILE_NAME = "Log";
         LOG_SWITCH = LOG_SWITCHs;
         LOG_TO_FILE = LOG_TO_FILEs;
+
+//        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+//                .showThreadInfo(false)      //（可选）是否显示线程信息。 默认值为true
+//                .methodCount(1)               // （可选）要显示的方法行数。 默认2
+//                .methodOffset(4)               // （可选）设置调用堆栈的函数偏移值，0的话则从打印该Log的函数开始输出堆栈信息，默认是0
+//                .tag("MY_LOGGER")                  //（可选）每个日志的全局标记。 默认PRETTY_LOGGER（如上图）
+//                .build();
+//        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
+//            @Override public boolean isLoggable(int priority, String tag) {
+//                return LOG_SWITCH;
+//            }
+//        });
+        LogUtils.getLogConfig()
+                .configAllowLog(LOG_SWITCH)
+                .configTagPrefix("MY_LOGGER")
+                .configMethodOffset(3)
+                .configShowBorders(false);
     }
 
     /****************************
@@ -126,15 +145,24 @@ public class BaseLogUtil {
     private static void log(String tag, String msg, Throwable tr, char level) {
         if (LOG_SWITCH) {
             if ('e' == level && ('e' == LOG_TYPE || 'v' == LOG_TYPE)) { // 输出错误信息
-                Log.e(tag, msg, tr);
+//                Log.e(tag, msg, tr);
+                if(tr == null){
+                    LogUtils.tag(tag).e(msg);
+                }else{
+                    LogUtils.tag(tag).e(tr);
+                }
             } else if ('w' == level && ('w' == LOG_TYPE || 'v' == LOG_TYPE)) {
-                Log.w(tag, msg, tr);
+//                Log.w(tag, msg, tr);
+                LogUtils.tag(tag).w(msg);
             } else if ('d' == level && ('d' == LOG_TYPE || 'v' == LOG_TYPE)) {
-                Log.d(tag, msg, tr);
+//                Log.d(tag, msg, tr);
+                LogUtils.tag(tag).d(msg);
             } else if ('i' == level && ('d' == LOG_TYPE || 'v' == LOG_TYPE)) {
-                Log.i(tag, msg, tr);
+//                Log.i(tag, msg, tr);
+                LogUtils.tag(tag).i(msg);
             } else {
-                Log.v(tag, msg, tr);
+//                Log.v(tag, msg, tr);
+                LogUtils.tag(tag).i(msg);
             }
             if (LOG_TO_FILE)
                 log2File(String.valueOf(level), tag, msg + tr == null ? "" : "\n" + Log.getStackTraceString(tr));

@@ -14,6 +14,7 @@ import org.acra.sender.EmailIntentSender;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
 
+import com.apkfuns.logutils.LogUtils;
 import com.app.org.BuildConfig;
 import com.app.org.base.BaseApplication;
 import com.app.org.init.BaseFileInit;
@@ -61,8 +62,12 @@ public class MyApplication extends BaseApplication {
         ACRA.getErrorReporter().removeAllReportSenders();
         ACRA.getErrorReporter().setReportSender(new CrashReportSender());
 
+        LogUtils.getLogConfig()
+                .configAllowLog(BuildConfig.DEBUG)
+                .configTagPrefix("MY_LOGGER")
+                .configShowBorders(false);
         //设置log开关
-        BaseLogUtil.init(getApplicationContext(), BuildConfig.DEBUG,false);
+//        BaseLogUtil.init(getApplicationContext(), BuildConfig.DEBUG,false);
         //设置文件夹
         BaseFileInit.initFileDir(BaseUtils.getContext());
     }

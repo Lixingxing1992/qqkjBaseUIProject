@@ -1,6 +1,8 @@
 package com.app_res.org.util.http
 
 import android.os.Handler
+import com.apkfuns.logutils.LogUtils
+import com.app.org.base.BaseApplication
 import com.app.org.encryption.BaseEncodeUtil
 import com.app.org.http.BaseHttpConfig
 import com.app.org.http.BaseHttpInterface
@@ -22,7 +24,7 @@ class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
 
     internal var tag = System.currentTimeMillis().toString() + ""
 
-    var isShowLog = false
+    var isShowLog = true
 
     init {
         tag = System.currentTimeMillis().toString() + ""
@@ -32,7 +34,7 @@ class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
     override fun initUrl(url: String): BaseHttpInterface {
         baseHttpModel!!.url = url
         if(isShowLog){
-            BaseLogUtil.e(tag + "__baseInterface", "请求地址: " + baseHttpModel!!.url)
+             LogUtils.tag(tag + "__httpUtils").e( "请求地址: " + baseHttpModel!!.url)
         }
         return this
     }
@@ -55,7 +57,7 @@ class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
             }
         }
         if(isShowLog)
-        BaseLogUtil.e(tag + "__baseInterface", "加密前请求参数: $params")
+            LogUtils.tag(tag + "__httpUtils").e("加密前请求参数: $params")
         //将请求参数数据向服务器端发送\
         var jsonParams = JSONObject()
         jsonParams.put("userCode", "qqkj")
@@ -66,7 +68,7 @@ class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
         }
         baseHttpModel!!.params = jsonParams
         if(isShowLog)
-        BaseLogUtil.e(tag + "__baseInterface", "加密后请求参数: " + baseHttpModel!!.params)
+            LogUtils.tag(tag + "__httpUtils").e("加密后请求参数: " + baseHttpModel!!.params)
         return this
     }
 
@@ -83,51 +85,57 @@ class HttpUtils @JvmOverloads constructor(isShowLog: Boolean? = true)
             httpHandler = Handler(httpHandlerCallBack)
         }
         BaseThreadPoolUtil.execute {
-            try {
-                if (BaseStringUtil.isEmpty(baseHttpModel.url)) {
-                    httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Params
-                    httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
-                } else {
-                    httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Unknow
-
-                    val baseHttpResultModel = baseHttpUtil.postJson(baseHttpModel!!.params as JSONObject, baseHttpModel!!.url)
-
-                    if (baseHttpResultModel!!.responseCode == 200 && baseHttpResultModel!!.inputStream != null) {
-                        val bytes = BaseDataUtil.inputStream2Bytes(baseHttpResultModel!!.inputStream)
-                        val result = String(bytes)
-                        if (BaseStringUtil.isEmpty(result)) {
-                            httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Read
-                            httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
-                        } else {
-                            if(isShowLog)
-                            BaseLogUtil.e(tag + "__baseInterface", "返回值 = " + result)
-                            httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Success
-                            httpHandler?.obtainMessage(0, result)?.sendToTarget()
-                        }
+            if(BaseApplication.getIns().newWorkType.checkNewCanUse(true)){
+                try {
+                    if (BaseStringUtil.isEmpty(baseHttpModel.url)) {
+                        httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Params
+                        httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
                     } else {
-                        if(baseHttpResultModel!!.exception != null){
-                            // 请求出现异常等等
-                            httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultException
-                            if(isShowLog)
-                            BaseLogUtil.e(tag + "__baseInterface", httpHandlerCallBack?.errorCode.toString()+",请联系后台程序员")
-                            httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
-                        }else{
-                            // 请求结果码错误等等
-                            httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultErrorCode
-                            if(isShowLog)
-                            BaseLogUtil.e(tag + "__baseInterface", httpHandlerCallBack?.errorCode.toString()+
-                                    ",错误码为: ${baseHttpResultModel!!.responseCode}")
-                            httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString()+
-                                    ",错误码为: ${baseHttpResultModel!!.responseCode}")?.sendToTarget()
+                        httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Unknow
+
+                        val baseHttpResultModel = baseHttpUtil.request((baseHttpModel!!.params as JSONObject).toString(), baseHttpModel!!.url)
+
+                        if (baseHttpResultModel!!.responseCode == 200 && baseHttpResultModel!!.inputStream != null) {
+                            val bytes = BaseDataUtil.inputStream2Bytes(baseHttpResultModel!!.inputStream)
+                            val result = String(bytes)
+                            if (BaseStringUtil.isEmpty(result)) {
+                                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Read
+                                httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
+                            } else {
+                                if(isShowLog)
+                                     LogUtils.tag(tag + "__httpUtils").e( "返回值 = " + result)
+                                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_Success
+                                httpHandler?.obtainMessage(0, result)?.sendToTarget()
+                            }
+                        } else {
+                            if(baseHttpResultModel!!.exception != null){
+                                // 请求出现异常等等
+                                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultException
+                                if(isShowLog)
+                                     LogUtils.tag(tag + "__httpUtils").e( baseHttpResultModel!!.exception)
+                                httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
+                            }else{
+                                // 请求结果码错误等等
+                                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultErrorCode
+                                if(isShowLog)
+                                     LogUtils.tag(tag + "__httpUtils").e( httpHandlerCallBack?.errorCode.toString()+
+                                            ",错误码为: ${baseHttpResultModel!!.responseCode}")
+                                httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString()+
+                                        ",错误码为: ${baseHttpResultModel!!.responseCode}")?.sendToTarget()
+                            }
                         }
                     }
+                } catch (e: Exception) {
+                    // 请求出现异常等等
+                    httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultException
+                    if(isShowLog)
+                         LogUtils.tag(tag + "__httpUtils").e( e)
+                    httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
                 }
-            } catch (e: Exception) {
-                // 请求出现异常等等
-                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_ResultException
+            }else{
+                httpHandlerCallBack?.errorCode = BaseHttpConfig.ErrorCode.Error_HASNONEW
                 if(isShowLog)
-                BaseLogUtil.e(tag + "__baseInterface", httpHandlerCallBack?.errorCode.toString()+
-                        ",异常信息:",e)
+                     LogUtils.tag(tag + "__httpUtils").e( httpHandlerCallBack?.errorCode.toString())
                 httpHandler?.obtainMessage(0, httpHandlerCallBack?.errorCode.toString())?.sendToTarget()
             }
         }

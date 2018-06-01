@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
+import com.app.org.view.BaseToast;
 import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Method;
@@ -31,12 +32,33 @@ public class BaseNetworkUtil {
     }
 
     public enum NetworkType {
-        NETWORK_WIFI,
-        NETWORK_4G,
-        NETWORK_3G,
-        NETWORK_2G,
-        NETWORK_UNKNOWN,
-        NETWORK_NO
+        NETWORK_WIFI("WIFI"),
+        NETWORK_4G("4G"),
+        NETWORK_3G("3G"),
+        NETWORK_2G("2G"),
+        NETWORK_UNKNOWN("未知网络连接"),
+        NETWORK_NO("无网络");
+
+        String name;
+        NetworkType(String name){
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public boolean checkNewCanUse(){
+            return checkNewCanUse(false);
+        }
+
+        public boolean checkNewCanUse(boolean isShowToast){
+            boolean flag = (this!= NetworkType.NETWORK_NO && isAvailableByPing());
+            if(!flag && isShowToast){
+                BaseToastUtil.showShortToastSafe("网络连接异常,请先检查您的网络配置");
+            }
+            return flag;
+        }
     }
 
     /**
@@ -82,10 +104,10 @@ public class BaseNetworkUtil {
         BaseShellUtil.CommandResult result = BaseShellUtil.execCmd("ping -c 1 -w 1 223.5.5.5", false);
         boolean ret = result.result == 0;
         if (result.errorMsg != null) {
-            Logger.d("isAvailableByPing errorMsg", result.errorMsg);
+//            Logger.d("isAvailableByPing errorMsg", result.errorMsg);
         }
         if (result.successMsg != null) {
-            Logger.d("isAvailableByPing successMsg", result.successMsg);
+//            Logger.d("isAvailableByPing successMsg", result.successMsg);
         }
         return ret;
     }
@@ -206,6 +228,8 @@ public class BaseNetworkUtil {
     private static final int NETWORK_TYPE_TD_SCDMA = 17;
     private static final int NETWORK_TYPE_IWLAN = 18;
 
+
+    public static final String NET_BR_NAME = "android.net.conn.CONNECTIVITY_CHANGE";
     /**
      * 获取当前网络类型
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>

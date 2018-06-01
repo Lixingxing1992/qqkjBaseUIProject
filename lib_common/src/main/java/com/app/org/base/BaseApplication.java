@@ -2,6 +2,9 @@ package com.app.org.base;
 
 import android.app.Application;
 
+import com.app.org.broadcast.BaseBroadcastUtil;
+import com.app.org.net.NetworkChangeReceiver;
+import com.app.org.utils.BaseNetworkUtil;
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import com.app.org.utils.BaseUtils;
 
@@ -25,12 +28,13 @@ public class BaseApplication extends Application {
 
     private static BaseApplication sInstance;
 
-    private List<ApplicationDelegate> mAppDelegateList;
-
-
     public static BaseApplication getIns() {
         return sInstance;
     }
+
+
+    // 网络连接状态
+    public BaseNetworkUtil.NetworkType newWorkType = BaseNetworkUtil.NetworkType.NETWORK_NO;
 
     @Override
     public void onCreate() {
@@ -43,6 +47,15 @@ public class BaseApplication extends Application {
 
         registerActivityLifecycleCallbacks(ParallaxHelper.getInstance());
 
+        new BaseBroadcastUtil("BaseApplication")
+                .addReceivers(BaseNetworkUtil.NET_BR_NAME,
+                        new NetworkChangeReceiver(new NetworkChangeReceiver.NetChangeListener() {
+            @Override
+            public void onChangeListener(BaseNetworkUtil.NetworkType netWorkState) {
+                newWorkType = netWorkState;
+            }
+        }));
+
 //        mAppDelegateList = BaseClassUtil.getObjectsWithInterface(this, ApplicationDelegate.class, ROOT_PACKAGE);
 //        for (ApplicationDelegate delegate : mAppDelegateList) {
 //            delegate.onCreate();
@@ -53,25 +66,16 @@ public class BaseApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        for (ApplicationDelegate delegate : mAppDelegateList) {
-            delegate.onTerminate();
-        }
     }
 
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        for (ApplicationDelegate delegate : mAppDelegateList) {
-            delegate.onLowMemory();
-        }
     }
 
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        for (ApplicationDelegate delegate : mAppDelegateList) {
-            delegate.onTrimMemory(level);
-        }
     }
 }
