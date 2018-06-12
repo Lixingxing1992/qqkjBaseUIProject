@@ -10,6 +10,10 @@ import java.util.concurrent.TimeUnit;
  * Created by lixingxing on 2018/5/10.
  */
 public class BaseThreadPoolManager {
+    static {
+        BaseThreadPoolManager baseThreadPoolManager = new BaseThreadPoolManager();
+    }
+    private static  BaseThreadPoolManager baseThreadPoolManager;
 
     // 线程池核心线程数
     private static int CORE_POOL_SIZE = 5;
@@ -19,8 +23,6 @@ public class BaseThreadPoolManager {
 
     // 额外线程空状态生存时间
     private static int KEEP_ALIVE_TIME = 10 * 1000;
-
-    private static BaseThreadPoolManager ourInstance = new BaseThreadPoolManager();
 
     // 1.把调用层传入的任务放入到请求队列中
     // 数据结构的选择: 1.阻塞  2.容量无线  3.插入很多

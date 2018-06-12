@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Handler
 import android.os.Message
 import com.app.org.http.BaseHttpConfig
-import com.app.org.http.BaseHttpHandlerCallBack
+import com.app.org.http.interfaces.BaseHttpHandlerCallBack
 import com.app.org.utils.BaseStringUtil
 import com.app.org.utils.BaseToastUtil
 import com.google.gson.Gson

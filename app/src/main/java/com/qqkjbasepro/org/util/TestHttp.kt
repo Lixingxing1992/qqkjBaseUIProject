@@ -4,22 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import android.view.View
-import com.apkfuns.logutils.LogUtils
 import com.app.org.base.BaseActivity
-import com.app.org.base.BaseApplication
-import com.app.org.utils.BaseLogUtil
+import com.app.org.http.BaseHttpConfig
+import com.app.org.http.BaseHttpUtils
+import com.app.org.http.Response
+import com.app.org.http.httpservice.*
+import com.app.org.http.interfaces.BaseHttpCallBack
 import com.app.org.utils.BaseToastUtil
 import com.app.org.view.dialog.BaseDialogLoading
 import com.app_res.org.util.http.HttpHandlerCallBack
-import com.app_res.org.util.http.HttpUtils
 import com.github.anzewei.parallaxbacklayout.ParallaxBack
-import com.orhanobut.logger.Logger
 import com.qqkjbasepro.org.R
 import com.qqkjbasepro.org.config.AppConfig
+import com.qqkjbasepro.org.model.EventModel
+import com.qqkjbasepro.org.model.EventModel2
 import kotlinx.android.synthetic.main.text_http.*
-import java.io.IOException
-import com.orhanobut.logger.AndroidLogAdapter
-
 
 
 /**
@@ -44,6 +43,9 @@ class TestHttp : BaseActivity() {
         setContentView(R.layout.text_http)
         setupTitleLayout(baseTitle, false)
         baseTitle.title = "测试"
+
+        BaseHttpUtils.init(TDHttpService::class.java, JsonDataListener::class.java)
+
     }
 
     fun onBtnClick(view: View) {
@@ -53,40 +55,56 @@ class TestHttp : BaseActivity() {
                         .setLoadingText("正在get请求中...")
                 baseDialogLoading.show()
 
-                HttpUtils().initUrl(AppConfig.BaseUrl + "api/activity/getActivityList")
-                        .initParams("cardCode", 10001, "page", 1, "size", 50)
-                        .initHttpCallBack(object : HttpHandlerCallBack(baseDialogLoading) {
-                            override fun hasError() {
+                BaseHttpUtils().initUrl(AppConfig.BaseUrl + "api/activity/getActivityList")
+                        .initParams("cardCode", 10001, "page", 10, "size", 50)
+                        .initResponseType(BaseHttpConfig.ResponseType.List)
+                        .initHttpCallBack(object : BaseHttpCallBack<EventModel>(baseDialogLoading){
+                            override fun onSuccess(response: Response?) {
+                                var list:List<EventModel> = response!!.getListResponse()
+                                BaseToastUtil.showShortToast(list[0].proName)
                             }
+                            override fun onError(error: String?, errorType: BaseHttpConfig.ErrorType?) {
 
-                            override fun hasNoData() {
-                            }
-
-                            override fun dealMessage(msg: Message) {
-                                BaseToastUtil.showShortToastSafe(msg.obj.toString())
-                                baseDialogLoading.cancel()
                             }
                         })
-                        .goHttp()
+                        .requst()
             }
             R.id.btn_post -> {
                 val baseDialogLoading = BaseDialogLoading(baseContext)
                         .showDialog("正在 post 请求中...")
-                HttpUtils(false).initUrl(AppConfig.BaseUrl + "api/activity/getActivityLists")
+                BaseHttpUtils().initUrl(AppConfig.BaseUrl + "api/activity/getActivityLists")
                         .initParams("cardCode", 10001, "page", 1, "size", 50)
-                        .initHttpCallBack(object : HttpHandlerCallBack(baseDialogLoading) {
-                            override fun hasError() {
+                        .initResponseType(BaseHttpConfig.ResponseType.List)
+                        .initHttpCallBack(object : BaseHttpCallBack<EventModel>(baseDialogLoading){
+                            override fun onSuccess(response: Response?) {
+                                var list:List<EventModel> = response!!.getListResponse()
+                                BaseToastUtil.showShortToast(list[0].proName)
+                            }
+                            override fun onError(error: String?, errorType: BaseHttpConfig.ErrorType?) {
+                                BaseToastUtil.showShortToast(error)
                             }
 
-                            override fun hasNoData() {
+                        })
+                        .requst()
+            }
+            R.id.btn_xml->{
+                val baseDialogLoading = BaseDialogLoading(baseContext)
+                        .showDialog("正在 xml 请求中...")
+                BaseHttpUtils().initUrl("http://api.aquacity-nj.com:9821/aquacity/modilb/appFunction")
+                        .initParams("<opType>getPromoteList</opType><page>10</page><size>10</size>")
+                        .initIHttpService(XmlHttpService())
+                        .initIDataListener(XmlDataListener())
+                        .initResponseType(BaseHttpConfig.ResponseType.List)
+                        .initHttpCallBack(object : BaseHttpCallBack<EventModel2>(baseDialogLoading) {
+                            override fun onSuccess(response: Response?) {
+                                var list:List<EventModel2> = response!!.getListResponse()
+                                BaseToastUtil.showShortToast(list[0].promotionName)
                             }
-
-                            override fun dealMessage(msg: Message) {
-                                BaseToastUtil.showShortToastSafe(msg.obj.toString())
-                                baseDialogLoading.cancel()
+                            override fun onError(error: String?, errorType: BaseHttpConfig.ErrorType?) {
+                                BaseToastUtil.showShortToast(error)
                             }
                         })
-                        .goHttp()
+                        .requst()
             }
             else -> {
             }

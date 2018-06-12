@@ -11,7 +11,7 @@ public class ViewCalculateUtil {
     public static void setViewLinearLayoutParam(View view, int width,int height,int topMargin,int bottomMargin,int leftMargin,int rightMargin){
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
         if(width!= LinearLayout.LayoutParams.MATCH_PARENT && width!=LinearLayout.LayoutParams.WRAP_CONTENT){
-            layoutParams.width = UIUtils.getInstance().getWidth(width);
+//            layoutParams.width = UIUtils.getInstance().getWidth(width);
         }
     }
 }

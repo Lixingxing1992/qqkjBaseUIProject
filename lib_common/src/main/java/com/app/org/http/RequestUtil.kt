@@ -1,18 +1,7 @@
 package com.app.org.http
 
-import com.app.org.encryption.BaseEncodeUtil
-import com.app.org.utils.BaseLogUtil
-import com.app.org.utils.BaseStringUtil
-import com.app.org.utils.BaseThreadPoolUtil
-import com.google.gson.Gson
-import com.google.gson.JsonParser
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
 import java.io.*
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
-import java.net.ProtocolException
 import java.net.URL
 import java.util.*
 
@@ -21,7 +10,7 @@ import java.util.*
  * Created by Administrator on 2017/6/7.
  */
 
-class BaseHttpUtil {
+class RequestUtil {
 
     private var successMsg = ""
     private var timeOut = 10 * 1000
@@ -82,7 +71,7 @@ class BaseHttpUtil {
     }
 
     //提交方式
-    fun Request_requestType(paramType: BaseHttpConfig.RequestType): BaseHttpUtil {
+    fun Request_requestType(paramType: BaseHttpConfig.RequestType): RequestUtil {
         requestType =
                 when (paramType) {
 
@@ -97,13 +86,13 @@ class BaseHttpUtil {
         return this
     }
 
-    fun Request_requestType(paramType: String): BaseHttpUtil {
+    fun Request_requestType(paramType: String): RequestUtil {
         requestType = paramType
         return this
     }
 
     //参数类型
-    fun Request_ContentType(paramType: BaseHttpConfig.ParamType): BaseHttpUtil {
+    fun Request_ContentType(paramType: BaseHttpConfig.ParamType): RequestUtil {
         contentType =
                 when (paramType) {
 
@@ -118,18 +107,18 @@ class BaseHttpUtil {
         return this
     }
 
-    fun Request_ContentType(paramType: String): BaseHttpUtil {
+    fun Request_ContentType(paramType: String): RequestUtil {
         contentType = paramType
         return this
     }
 
 
     @Synchronized
-    fun request(params: String?, urlPath: String): BaseHttpResultModel? {
+    fun request(params: String?, urlPath: String): Response {
         var requestType = if(requestType == "") requestTypeStatic else requestType
         var contentType = if(contentType == "") contentTypeStatic else contentType
 
-        var baseHttpResultModel = BaseHttpResultModel()
+        var baseHttpResultModel = Response()
 
         if (requestType == "FILE") {
             baseHttpResultModel.exception = RuntimeException("请选择File上传方法")
@@ -272,17 +261,17 @@ class BaseHttpUtil {
         }
     }
 
-    fun setSuccessMsg(successMsg: String): BaseHttpUtil {
+    fun setSuccessMsg(successMsg: String): RequestUtil {
         this.successMsg = successMsg
         return this
     }
 
-    fun setTimeOut(timeOut: Int): BaseHttpUtil {
+    fun setTimeOut(timeOut: Int): RequestUtil {
         this.timeOut = timeOut
         return this
     }
 
-    fun setConnectTimeout(connectTimeout: Int): BaseHttpUtil {
+    fun setConnectTimeout(connectTimeout: Int): RequestUtil {
         this.connectTimeout = connectTimeout
         return this
     }

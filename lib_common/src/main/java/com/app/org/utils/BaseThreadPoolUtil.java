@@ -3,8 +3,11 @@ package com.app.org.utils;
 /**
  * Created by Administrator on 2016/5/30.
  */
+import android.os.UserHandle;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BaseThreadPoolUtil {
 
     private BaseThreadPoolUtil() {
-
     }
 
     // 线程池核心线程数
@@ -37,6 +39,7 @@ public class BaseThreadPoolUtil {
     private static BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<Runnable>(
             10);
 
+
     // 线程工厂
     private static ThreadFactory threadFactory = new ThreadFactory() {
         private final AtomicInteger integer = new AtomicInteger();
@@ -47,13 +50,24 @@ public class BaseThreadPoolUtil {
                     + integer.getAndIncrement());
         }
     };
+    private static RejectedExecutionHandler rejectedExecutionHandler = new RejectedExecutionHandler() {
+        @Override
+        public void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
+            //runnable 就是被丢出来的线程
+            try {
+                workQueue.put(runnable);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     // 线程池
     private static ThreadPoolExecutor threadPool;
 
     static {
         threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE,
-                KEEP_ALIVE_TIME, TimeUnit.SECONDS, workQueue, threadFactory);
+                KEEP_ALIVE_TIME, TimeUnit.SECONDS, workQueue, threadFactory,rejectedExecutionHandler);
     }
 
     /**
