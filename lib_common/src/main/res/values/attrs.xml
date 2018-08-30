@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+    <!-- 自定义滚动动画框架view -->
+    <declare-styleable name="DiscrollView_LayoutParams">
+        <attr name="discrollve_alpha" format="boolean"/>
+        <attr name="discrollve_scaleX" format="boolean"/>
+        <attr name="discrollve_scaleY" format="boolean"/>
+        <attr name="discrollve_fromBgColor" format="color"/>
+        <attr name="discrollve_toBgColor" format="color"/>
+        <attr name="discrollve_translation"/>
+    </declare-styleable>
+    <attr name="discrollve_translation">
+        <flag name="fromTop" value="0x01" />
+        <flag name="fromBottom" value="0x02" />
+        <flag name="fromLeft" value="0x04" />
+        <flag name="fromRight" value="0x08" />
+    </attr>
+
+
     <!-- 进度条 -->
     <declare-styleable name="NumberProgressBar">
         <attr name="progress_current" format="integer"/>
@@ -48,7 +67,27 @@
     </declare-styleable>
 
 
+    <!--                                        EditText                                 -->
 
+    <!-- 记住输入内容的EditText -->
+    <declare-styleable name="BaseRememberEditText">
+        <!-- 自动填写cache值，默认为true -->
+        <attr name="autoFill" format="boolean" />
+        <!-- 自动保存内容到cache，默认为true -->
+        <attr name="autoSave" format="boolean" />
+        <!-- 下拉框图标，默认使用系统的abc_spinner_mtrl_am_alpha -->
+        <attr name="dropDownIcon" format="reference" />
+        <!-- 默认使用系统的abc_spinner_mtrl_am_alpha -->
+        <attr name="dropUpIcon" format="reference" />
+        <!-- 删除图标，默认使用系统的abc_ic_clear_mtrl_alpha -->
+        <attr name="deleteIcon" format="reference" />
+        <!-- 保存cache的key，如果没有设置则会使用view id，需要唯一 -->
+        <attr name="rememberId" format="string" />
+        <!-- 保存cache的数量，默认保存最近3个 -->
+        <attr name="rememberCount" format="integer" />
+    </declare-styleable>
+
+    <!--                                       ImageView                                 -->
     <!-- 圆形的imageView -->
     <declare-styleable name="BaseCircleImageView">
         <attr name="border_widths" format="dimension" />
@@ -58,6 +97,21 @@
     <declare-styleable name="BaseRoundAngleImageView">
         <attr name="roundWidth" format="dimension" />
         <attr name="roundHeight" format="dimension" />
+    </declare-styleable>
+    <!-- Android 圆角、圆形 ImageView -->
+    <declare-styleable name="BaseNiceImageView">
+        <attr name="is_circle" format="boolean" />
+        <attr name="is_cover_src" format="boolean" />
+        <attr name="corner_radius" format="dimension" />
+        <attr name="corner_top_left_radius" format="dimension" />
+        <attr name="corner_top_right_radius" format="dimension" />
+        <attr name="corner_bottom_left_radius" format="dimension" />
+        <attr name="corner_bottom_right_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="inner_border_width" format="dimension" />
+        <attr name="inner_border_color" format="color" />
+        <attr name="mask_color" format="color" />
     </declare-styleable>
 
 
@@ -85,7 +139,7 @@
     </declare-styleable>
 
 
-
+    <!-- 自定义title -->
     <declare-styleable name="BaseTitle">
         <attr name="title" format="string"/>
         <attr name="titleColor" format="color"/>
@@ -107,5 +161,17 @@
 
         <attr name="rightIcon" format="reference"/>
         <attr name="rightIconVisibility" format="boolean"/>
+    </declare-styleable>
+
+
+    <!-- 自定义CoordinatorLayout -->
+    <declare-styleable name="BeaviorCoordinatorLayout">
+        <attr name="layout_behavior" format="string"/>
+    </declare-styleable>
+
+
+    <!-- 自定义侧滑菜单 -->
+    <declare-styleable name="SideslipLayout">
+        <attr name="maxTranslationX" format="dimension"/>
     </declare-styleable>
 </resources>

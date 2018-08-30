@@ -1,4 +1,4 @@
-package com.app.org;
+package com.base.ui.org;
 
 import static junit.framework.Assert.assertEquals;
 

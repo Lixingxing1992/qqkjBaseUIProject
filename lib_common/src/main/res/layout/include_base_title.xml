@@ -5,7 +5,7 @@
                 android:layout_height="55dp"
                 android:gravity="center"
                 android:orientation="horizontal">
-    <com.app.org.view.textview.BaseTextAutoZoom
+    <com.base.ui.org.view.textview.BaseTextAutoZoom
         android:id="@+id/tv_rx_title"
         android:layout_width="200dp"
         android:layout_height="match_parent"

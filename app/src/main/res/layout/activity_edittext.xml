@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.base.ui.org.view.edittext.BaseEditTextAutoZoom
+        android:layout_marginTop="@dimen/dp_20"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:gravity="center_vertical"
+        android:hint="BaseEditTextAutoZoom"
+        android:textSize="@dimen/dp_15"
+        android:background="@color/black"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_50" />
+
+    <com.base.ui.org.view.edittext.BaseClickableEditText
+        android:id="@+id/drawableEditTextLeft"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@color/black"
+        android:drawableLeft="@mipmap/ic_arrow_back"
+        android:hint="Click the Drawables"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <com.base.ui.org.view.edittext.remember.BaseRememberEditText
+        android:id="@+id/drawableEditTextRemeber"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@color/white"
+        android:hint="BaseRememberEditText"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:rememberCount="3"
+        app:rememberId="username" />
+        />
+</LinearLayout>

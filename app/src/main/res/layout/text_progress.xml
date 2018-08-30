@@ -16,7 +16,7 @@
             android:background="?attr/colorPrimary" />
 
     </android.support.design.widget.AppBarLayout>
-    <com.app.org.view.progressbar.BaseNumberProgressBar
+    <com.base.ui.org.view.progressbar.BaseNumberProgressBar
         android:layout_marginTop="100px"
 
         android:layout_gravity="center"
@@ -40,7 +40,7 @@
         custom:progress_current="0"
         />
 
-    <com.app.org.view.progressbar.BaseProgressBar
+    <com.base.ui.org.view.progressbar.BaseProgressBar
         android:layout_marginTop="100px"
 
         android:layout_gravity="center"
@@ -51,7 +51,7 @@
 
         />
 
-    <com.app.org.view.progressbar.BaseRoundProgress
+    <com.base.ui.org.view.progressbar.BaseRoundProgress
         android:layout_marginTop="100px"
 
         android:layout_gravity="center"

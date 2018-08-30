@@ -7,9 +7,9 @@ static def buildTime() {
 }
 rootProject.ext {
     // Sdk and tools
-    compileSdkVersion = 25
+    compileSdkVersion = 28
     minSdkVersion = 19
-    targetSdkVersion = 25
+    targetSdkVersion = 28
     versionCode = 1
     versionName = "1.0"
 }
@@ -26,7 +26,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.qqkjbasepro.org"
+        applicationId "com.qqkjbaseui.org"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -105,13 +105,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_common')
-//    implementation project(':lib_res')
-//    if (!isModule.toBoolean()) {
-//        implementation project(':module_main')
-//        implementation project(':module_coupon')
-//        implementation project(':module_event')
-//        implementation project(':test')
-//    }
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 

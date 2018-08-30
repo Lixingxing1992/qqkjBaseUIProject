@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.base.ui.org.view.sideslip.curvelayout.BaseSidesLipCurveLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="@string/large_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.base.ui.org.view.sideslip.curvelayout.CurveContentLayout
+            android:layout_gravity="start"
+            android:background="@color/colorPrimaryDark"
+            app:maxTranslationX="@dimen/dp_66"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </com.base.ui.org.view.sideslip.curvelayout.CurveContentLayout>
+    </com.base.ui.org.view.sideslip.curvelayout.BaseSidesLipCurveLayout>
+</LinearLayout>

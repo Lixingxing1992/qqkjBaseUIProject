@@ -5,12 +5,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.app.org.view.BaseTitle
+    <com.base.ui.org.view.BaseTitle
         android:id="@+id/baseTitle"
         android:background="@color/bg_gray"
         android:layout_width="match_parent"
         android:layout_height="100px">
-    </com.app.org.view.BaseTitle>
+    </com.base.ui.org.view.BaseTitle>
 
     <Button
         android:layout_gravity="center"

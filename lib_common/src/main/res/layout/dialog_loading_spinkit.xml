@@ -12,7 +12,7 @@
               android:paddingTop="18dp">
 
 
-    <com.app.org.view.progressbar.progressing.SpinKitView
+    <com.base.ui.org.view.progressbar.progressing.SpinKitView
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.DoubleBounce"
         android:layout_width="wrap_content"

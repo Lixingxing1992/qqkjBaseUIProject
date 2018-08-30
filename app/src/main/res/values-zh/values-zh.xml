@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">框架DEMO</string>
-
+    <string name="app_names">BaseUI DEMO</string>
 
     <!-- 崩溃 -->
     <string name="crash_toast_text">程序崩溃了</string>
